@@ -31,3 +31,4 @@ func update_money_ui() -> void:
 func _on_button_pressed() -> void:
 	print("hello")
 	$"../ShopUi".visible = !$"../ShopUi".visible
+	$"../CanvasLayer/Money".visible = !$"../CanvasLayer/Money".visible
