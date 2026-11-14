@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dv6ybaf0cpsqd" path="res://images.jpg" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://b78wng2jern54" path="res://pixil-frame-0.png" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bhrdwytf8tg86" path="res://dvd.gd" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://rku6r8rq7qn5" path="res://pixilart-drawing (4).png" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://bglk0cfw8lbwv" path="res://shop_button.gd" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://c316wl62gs4oj" path="res://pixilart-drawing (5).png" id="5_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luqic"]
 size = Vector2(1172, 20)
@@ -16,9 +19,8 @@ size = Vector2(1172, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y02g7"]
 size = Vector2(20, 668)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0uele"]
-radius = 51.0
-height = 226.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(87.04503, 203.96107)
 
 [node name="Node2D" type="Node2D" unique_id=362993769]
 
@@ -54,7 +56,32 @@ scale = Vector2(8.365, 8.365)
 texture = ExtResource("2_0xm2m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DVD" unique_id=916553403]
-position = Vector2(600, 308.99997)
+position = Vector2(599.0007, 309.52167)
 rotation = -1.5712293
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("CapsuleShape2D_0uele")
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Shop Button" type="CanvasLayer" parent="." unique_id=983321875]
+scale = Vector2(8.365, 8.365)
+transform = Transform2D(8.365, 0, 0, 8.365, 0, 0)
+script = ExtResource("4_7mycd")
+
+[node name="Button" type="Button" parent="Shop Button" unique_id=432504035]
+offset_left = 97.42977
+offset_top = 55.708313
+offset_right = 137.42978
+offset_bottom = 79.70832
+icon = ExtResource("4_1bvp3")
+flat = true
+
+[node name="ShopUi" type="Area2D" parent="." unique_id=41603899]
+visible = false
+
+[node name="Shop" type="Sprite2D" parent="ShopUi" unique_id=181213480]
+z_index = 1
+position = Vector2(581, 511)
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("5_lquwl")
+
+[connection signal="pressed" from="Shop Button/Button" to="DVD" method="_on_button_pressed"]
+[connection signal="toggled" from="Shop Button/Button" to="DVD" method="_on_button_toggled"]

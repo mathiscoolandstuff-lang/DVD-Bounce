@@ -19,3 +19,16 @@ func _physics_process(delta):
 	# Bouncing off flat walls will naturally keep it locked to those 4 angles
 	if collision:
 		velocity = velocity.bounce(collision.get_normal())
+
+
+
+	
+
+
+
+func _on_button_pressed() -> void:
+	print("hello")
+	if $"../ShopUi/Shop".visible == false:
+		$"../ShopUi".visible = true
+	else:
+		$"../ShopUi".visible = false
