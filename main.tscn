@@ -2,22 +2,59 @@
 
 [ext_resource type="Texture2D" uid="uid://dv6ybaf0cpsqd" path="res://images.jpg" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://b78wng2jern54" path="res://pixil-frame-0.png" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bhrdwytf8tg86" path="res://dvd.gd" id="2_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_luqic"]
+size = Vector2(1172, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0uele"]
+size = Vector2(20, 668)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omajn"]
+size = Vector2(1172, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y02g7"]
+size = Vector2(20, 668)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0uele"]
+radius = 51.0
+height = 226.0
 
 [node name="Node2D" type="Node2D" unique_id=362993769]
 
-[node name="Background" type="Area2D" parent="." unique_id=1469725335]
+[node name="Walls" type="StaticBody2D" parent="." unique_id=473877238]
 
-[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=2030852517]
-position = Vector2(578.49994, 330)
-scale = Vector2(2.6241608, 1.5078301)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=2110244661]
+position = Vector2(576, 0)
+shape = SubResource("RectangleShape2D_luqic")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=1366612885]
+position = Vector2(0, 324)
+shape = SubResource("RectangleShape2D_0uele")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" unique_id=1587983761]
+position = Vector2(576, 648)
+shape = SubResource("RectangleShape2D_omajn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" unique_id=1041748892]
+position = Vector2(1152, 324)
+shape = SubResource("RectangleShape2D_y02g7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls" unique_id=308235747]
+position = Vector2(576, 324.00003)
+scale = Vector2(2.577181, 1.4496645)
 texture = ExtResource("1_ig7tw")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background" unique_id=635125199]
-polygon = PackedVector2Array(1152, 0, 1152, 346, 1367, 336, 1281, -151, -367, -270, -144, 872, 1455, 844, 1366, 335, 1152, 346, 1152, 648, 0, 648, 0, 0)
-
-[node name="DVD" type="Area2D" parent="." unique_id=1664554505]
+[node name="DVD" type="CharacterBody2D" parent="." unique_id=978095398]
+script = ExtResource("2_h2yge")
 
 [node name="Sprite2D" type="Sprite2D" parent="DVD" unique_id=218356919]
 position = Vector2(600, 300)
 scale = Vector2(8.365, 8.365)
 texture = ExtResource("2_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DVD" unique_id=916553403]
+position = Vector2(600, 308.99997)
+rotation = -1.5712293
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_0uele")
