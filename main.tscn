@@ -75,12 +75,21 @@ icon = ExtResource("4_1bvp3")
 flat = true
 
 [node name="ShopUi" type="Area2D" parent="." unique_id=41603899]
+visible = false
 
 [node name="Shop" type="Sprite2D" parent="ShopUi" unique_id=181213480]
 z_index = 1
 position = Vector2(581, 511)
 scale = Vector2(6.5, 6.5)
 texture = ExtResource("5_lquwl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2046911208]
+
+[node name="Money" type="Label" parent="CanvasLayer" unique_id=575790118]
+offset_left = 1053.0
+offset_right = 1133.0
+offset_bottom = 23.0
+text = "Money: $0"
 
 [connection signal="pressed" from="Shop Button/Button" to="DVD" method="_on_button_pressed"]
 [connection signal="toggled" from="Shop Button/Button" to="DVD" method="_on_button_toggled"]

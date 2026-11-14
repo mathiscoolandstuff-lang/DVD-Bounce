@@ -2,26 +2,32 @@ extends CharacterBody2D
 
 @export var speed: float = 300.0
 
-func _ready():
+var money: int = 0
+var dvd_level: int = 1
+var money_label: Label
+
+func _ready() -> void:
+	# Automatically finds the node named "Money" anywhere in your current scene
+	money_label = get_tree().current_scene.find_child("Money", true, false)
+	
 	var four_directions = [45.0, 135.0, 225.0, 315.0]
 	var chosen_degrees = four_directions.pick_random()
 	var direction = Vector2.from_angle(deg_to_rad(chosen_degrees))
 	velocity = direction * speed
+	
+	update_money_ui()
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		velocity = velocity.bounce(collision.get_normal())
+		money += 10 * dvd_level
+		update_money_ui()
 
-
-
-	
-
-
+func update_money_ui() -> void:
+	if money_label:
+		money_label.text = "Money: $" + str(money)
 
 func _on_button_pressed() -> void:
 	print("hello")
-	if $"../ShopUi".visible == false:
-		$"../ShopUi".visible = true
-	else:
-		$"../ShopUi".visible = false
+	$"../ShopUi".visible = !$"../ShopUi".visible
