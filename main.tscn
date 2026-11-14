@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://byc50nu3mmxp1"]
 
+[ext_resource type="Texture2D" uid="uid://dv6ybaf0cpsqd" path="res://images.jpg" id="1_ig7tw"]
+
 [node name="Node2D" type="Node2D" unique_id=362993769]
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1469725335]
+[node name="Bakcground" type="Area2D" parent="." unique_id=1469725335]
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=2030852517]
+[node name="Sprite2D" type="Sprite2D" parent="Bakcground" unique_id=2030852517]
+position = Vector2(578.49994, 330)
+scale = Vector2(2.6241608, 1.5078301)
+texture = ExtResource("1_ig7tw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1923871625]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bakcground" unique_id=635125199]
+polygon = PackedVector2Array(1159, -2, 1159, 343, 1367, 336, 1281, -151, -367, -270, -144, 872, 1455, 844, 1366, 335, 1154, 346, 1159, 666, -19, 671, -7, -28)
