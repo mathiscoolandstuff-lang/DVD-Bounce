@@ -75,7 +75,6 @@ icon = ExtResource("4_1bvp3")
 flat = true
 
 [node name="ShopUi" type="Area2D" parent="." unique_id=41603899]
-visible = false
 
 [node name="Shop" type="Sprite2D" parent="ShopUi" unique_id=181213480]
 z_index = 1

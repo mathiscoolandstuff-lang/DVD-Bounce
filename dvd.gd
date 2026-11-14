@@ -28,7 +28,7 @@ func _physics_process(delta):
 
 func _on_button_pressed() -> void:
 	print("hello")
-	if $"../ShopUi/Shop".visible == false:
+	if $"../ShopUi".visible == false:
 		$"../ShopUi".visible = true
 	else:
 		$"../ShopUi".visible = false
