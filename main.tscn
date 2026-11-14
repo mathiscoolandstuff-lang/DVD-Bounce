@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://byc50nu3mmxp1"]
 
 [ext_resource type="Texture2D" uid="uid://dv6ybaf0cpsqd" path="res://images.jpg" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://b78wng2jern54" path="res://pixil-frame-0.png" id="2_0xm2m"]
 
 [node name="Node2D" type="Node2D" unique_id=362993769]
 
@@ -13,3 +14,10 @@ texture = ExtResource("1_ig7tw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background" unique_id=635125199]
 polygon = PackedVector2Array(1152, 0, 1152, 346, 1367, 336, 1281, -151, -367, -270, -144, 872, 1455, 844, 1366, 335, 1152, 346, 1152, 648, 0, 648, 0, 0)
+
+[node name="DVD" type="Area2D" parent="." unique_id=1664554505]
+
+[node name="Sprite2D" type="Sprite2D" parent="DVD" unique_id=218356919]
+position = Vector2(600, 300)
+scale = Vector2(8.365, 8.365)
+texture = ExtResource("2_0xm2m")
