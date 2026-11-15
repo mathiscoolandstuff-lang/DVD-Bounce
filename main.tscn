@@ -114,8 +114,7 @@ rare_crate_button = NodePath("../ShopUi/GridContainer/TextureButton3")
 math_quiz_interval = 60.0
 chemistry_dvd_texture = ExtResource("7_facbu")
 potion_texture = ExtResource("24_b1qrp")
-dvd_texture = ExtResource("7_facbu")
-dvd_level = 34
+dvd_texture = ExtResource("2_0xm2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="DVD" unique_id=218356919]
 position = Vector2(600, 300)
@@ -208,6 +207,17 @@ script = ExtResource("8_kek77")
 dvd_player = NodePath("../../../DVD")
 dvd_textures = Array[Texture2D]([ExtResource("14_getpj"), ExtResource("15_ryguw"), ExtResource("16_d13ii"), ExtResource("17_1u8w0"), ExtResource("22_f6a44"), ExtResource("20_wnkbs")])
 cost = 10000000
+
+[node name="Label" type="Label" parent="ShopUi" unique_id=1840019695]
+z_index = 1
+offset_left = 427.0
+offset_top = 198.0
+offset_right = 682.0
+offset_bottom = 299.0
+text = "Common (Gray): $100
+Uncommon (Green): $10,000
+Rare (Blue): $1,000,000
+Legendary (Yellow): $100,000,000"
 
 [node name="Money" type="CanvasLayer" parent="." unique_id=2046911208]
 
