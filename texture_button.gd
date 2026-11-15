@@ -191,7 +191,7 @@ func play_crate_animation(reward_texture: Texture2D) -> void:
 	# === STEP 4: DVD FLOATS DOWN TO PODIUM & SPINS SLOWLY FOR 6 SECONDS ===
 	var float_tween = create_tween()
 	float_tween.tween_property(dvd_disc, "position:y", -0.35, 1.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	float_tween.parallel().tween_property(dvd_disc, "rotation_degrees:y", 720.0, 6.0).set_trans(Tween.TRANS_LINEAR)
+	float_tween.parallel().tween_property(dvd_disc, "rotation_degrees:y", 720.0, 3.0).set_trans(Tween.TRANS_LINEAR)
 	await float_tween.finished
 	
 	var end_tween = create_tween()
