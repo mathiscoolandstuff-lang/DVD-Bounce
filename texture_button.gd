@@ -3,7 +3,6 @@ extends TextureButton
 @export var dvd_player: CharacterBody2D
 @export var dvd_textures: Array[Texture2D] = []
 @export var cost: int = 100
-@export var unlock_display_size: float = 400
 
 var is_opening: bool = false
 
@@ -19,7 +18,6 @@ func _on_pressed() -> void:
 		dvd_player.money -= cost
 		dvd_player.update_money_ui()
 		
-		# 1. Pick the random DVD texture
 		var chosen_texture: Texture2D
 		if dvd_textures.size() > 1:
 			var available = dvd_textures.filter(func(tex): return tex != dvd_player.dvd_texture)
@@ -27,14 +25,11 @@ func _on_pressed() -> void:
 		else:
 			chosen_texture = dvd_textures.pick_random()
 		
-		# 2. Play the crate opening animation before/while equipping
 		await play_crate_animation(chosen_texture)
 		
-		# 3. Equip the DVD and unlock it in the Dex
 		dvd_player.dvd_texture = chosen_texture
 		is_opening = false
 	else:
-		# Shake the crate button slightly if the player can't afford it!
 		var orig_x = position.x
 		var shake = create_tween()
 		shake.tween_property(self, "position:x", orig_x + 6, 0.05)
@@ -42,48 +37,166 @@ func _on_pressed() -> void:
 		shake.tween_property(self, "position:x", orig_x, 0.05)
 
 func play_crate_animation(reward_texture: Texture2D) -> void:
-	# Create a temporary popup layer on top of everything
+	# 1. Fullscreen overlay above all 2D UI
 	var overlay = CanvasLayer.new()
-	overlay.layer = 10
+	overlay.layer = 25
 	get_tree().current_scene.add_child(overlay)
 	
-	# Dark background dim
 	var dim = ColorRect.new()
-	dim.color = Color(0, 0, 0, 0.65)
+	dim.color = Color(0.03, 0.04, 0.09, 0.85)
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	overlay.add_child(dim)
 	
-	# Center container for the crate / reward sprite
-	var center = CenterContainer.new()
-	center.set_anchors_preset(Control.PRESET_FULL_RECT)
-	overlay.add_child(center)
+	# 2. 3D SubViewport
+	var vpc = SubViewportContainer.new()
+	vpc.set_anchors_preset(Control.PRESET_FULL_RECT)
+	vpc.stretch = true
+	overlay.add_child(vpc)
 	
-	var display_icon = TextureRect.new()
-	display_icon.texture = texture_normal # Starts showing the crate image
-	display_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	display_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	display_icon.custom_minimum_size = Vector2(unlock_display_size, unlock_display_size)
-	display_icon.pivot_offset = Vector2(unlock_display_size * 0.5, unlock_display_size * 0.5)
-	display_icon.scale = Vector2(0.2, 0.2)
-	center.add_child(display_icon)
+	var vp = SubViewport.new()
+	vp.size = get_viewport_rect().size
+	vp.transparent_bg = true
+	vp.own_world_3d = true
+	vp.msaa_3d = Viewport.MSAA_4X
+	vpc.add_child(vp)
 	
-	# Step A: Crate pops onto screen
-	var tween = create_tween()
-	tween.tween_property(display_icon, "scale", Vector2(1.0, 1.0), 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	# 3. WorldEnvironment + Studio Lights
+	var world_env = WorldEnvironment.new()
+	var env = Environment.new()
+	env.background_mode = Environment.BG_CLEAR_COLOR
+	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+	env.ambient_light_color = Color(0.95, 0.97, 1.0)
+	env.ambient_light_energy = 1.4
+	world_env.environment = env
+	vp.add_child(world_env)
 	
-	# Step B: Crate shakes left and right with suspense!
-	for i in range(5):
-		tween.tween_property(display_icon, "rotation_degrees", 14.0, 0.06)
-		tween.tween_property(display_icon, "rotation_degrees", -14.0, 0.06)
-	tween.tween_property(display_icon, "rotation_degrees", 0.0, 0.05)
+	var cam = Camera3D.new()
+	cam.position = Vector3(0, 0.8, 5.2)
+	cam.look_at(Vector3(0, -0.2, 0))
+	vp.add_child(cam)
 	
-	# Step C: Flash white and swap the crate sprite into the rolled DVD!
-	tween.tween_property(display_icon, "modulate", Color(3, 3, 3, 1), 0.1)
-	tween.tween_callback(func(): display_icon.texture = reward_texture)
-	tween.tween_property(display_icon, "scale", Vector2(1.35, 1.35), 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(display_icon, "modulate", Color(1, 1, 1, 1), 0.25)
+	var key_light = DirectionalLight3D.new()
+	key_light.rotation_degrees = Vector3(-40, 30, 0)
+	key_light.light_energy = 1.6
+	vp.add_child(key_light)
 	
-	# Hold on screen briefly so the player sees what they got, then clean up
-	tween.tween_interval(0.9)
-	await tween.finished
+	var rim_light = OmniLight3D.new()
+	rim_light.position = Vector3(0, 2.2, 1.5)
+	rim_light.light_color = Color(0.4, 0.8, 1.0)
+	rim_light.light_energy = 3.5
+	vp.add_child(rim_light)
+	
+	# 4. Build the 3D Podium at the bottom
+	var podium = MeshInstance3D.new()
+	var pod_mesh = CylinderMesh.new()
+	pod_mesh.top_radius = 1.45
+	pod_mesh.bottom_radius = 1.75
+	pod_mesh.height = 0.45
+	podium.mesh = pod_mesh
+	
+	var pod_mat = StandardMaterial3D.new()
+	pod_mat.albedo_color = Color(0.16, 0.2, 0.32)
+	pod_mat.metallic = 0.75
+	pod_mat.roughness = 0.2
+	pod_mat.emission_enabled = true
+	pod_mat.emission = Color(0.2, 0.55, 1.0)
+	pod_mat.emission_energy_multiplier = 0.65
+	podium.material_override = pod_mat
+	podium.position = Vector3(0, -1.55, 0)
+	vp.add_child(podium)
+		# 5. Build the 3D Crate using a crisp double-sided QuadMesh
+	var crate = MeshInstance3D.new()
+	var crate_quad = QuadMesh.new()
+	crate_quad.size = Vector2(1.6, 1.6)
+	crate.mesh = crate_quad
+	
+	var crate_mat = StandardMaterial3D.new()
+	if texture_normal:
+		crate_mat.albedo_texture = texture_normal
+	else:
+		crate_mat.albedo_color = Color(0.85, 0.6, 0.2)
+	crate_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	crate_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	crate_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	crate_mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	crate.material_override = crate_mat
+	
+	crate.position = Vector3(0, 5.5, 0)
+	crate.rotation_degrees = Vector3(15, 30, 0)
+	vp.add_child(crate)
+	
+	# 6. Build the 3D DVD Showcase using a double-sided QuadMesh
+	var dvd_disc = MeshInstance3D.new()
+	var quad = QuadMesh.new()
+	quad.size = Vector2(2.2, 1.4)
+	dvd_disc.mesh = quad
+	
+	var disc_mat = StandardMaterial3D.new()
+	disc_mat.albedo_texture = reward_texture
+	disc_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	disc_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	disc_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	disc_mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	dvd_disc.material_override = disc_mat
+	
+	dvd_disc.position = Vector3(0, 1.4, 0)
+	dvd_disc.visible = false
+	vp.add_child(dvd_disc)
+
+	
+	# === STEP 1: CRATE FALLS FROM THE TOP ===
+	var fall_tween = create_tween()
+	fall_tween.tween_property(crate, "position", Vector3(0, 0.1, 0), 0.55).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	await fall_tween.finished
+	
+	# === STEP 2: SPIN FASTER AND FASTER UNTIL EDGES BLUR ===
+	var spin_tween = create_tween()
+	spin_tween.tween_property(crate, "rotation_degrees:y", 9000.0, 2.2).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	spin_tween.parallel().tween_property(crate, "rotation_degrees:x", 1800.0, 2.2).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	spin_tween.parallel().tween_property(crate, "position:y", 0.9, 2.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	spin_tween.parallel().tween_property(crate_mat, "emission_energy_multiplier", 5.0, 2.2).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	spin_tween.parallel().tween_property(crate, "scale", Vector3(1.25, 0.95, 1.25), 2.2)
+	await spin_tween.finished
+	
+	# === STEP 3: EXPLOSION + SHARDS ===
+	crate.visible = false
+	dvd_disc.visible = true
+	
+	var shard_mesh = BoxMesh.new()
+	shard_mesh.size = Vector3(0.2, 0.2, 0.2)
+	var shard_mat = StandardMaterial3D.new()
+	shard_mat.albedo_color = Color(1.0, 0.85, 0.25)
+	shard_mat.emission_enabled = true
+	shard_mat.emission = Color(1.0, 0.65, 0.15)
+	shard_mat.emission_energy_multiplier = 2.5
+	
+	for i in range(36):
+		var shard = MeshInstance3D.new()
+		shard.mesh = shard_mesh
+		shard.material_override = shard_mat
+		shard.position = Vector3(0, 0.9, 0)
+		vp.add_child(shard)
+		
+		var dir = Vector3(randf_range(-1, 1), randf_range(-0.3, 1.4), randf_range(-1, 1)).normalized()
+		var target = shard.position + dir * randf_range(4.0, 7.5)
+		var st = create_tween()
+		st.tween_property(shard, "position", target, 0.8).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		st.parallel().tween_property(shard, "rotation_degrees", Vector3(720, 900, 540), 0.8)
+		st.parallel().tween_property(shard, "scale", Vector3.ZERO, 0.8)
+	
+	dim.color = Color(1.0, 0.98, 0.9, 0.95)
+	var flash_tween = create_tween()
+	flash_tween.tween_property(dim, "color", Color(0.03, 0.04, 0.09, 0.85), 0.4)
+	
+	# === STEP 4: DVD FLOATS DOWN TO PODIUM & SPINS SLOWLY FOR 6 SECONDS ===
+	var float_tween = create_tween()
+	float_tween.tween_property(dvd_disc, "position:y", -0.35, 1.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	float_tween.parallel().tween_property(dvd_disc, "rotation_degrees:y", 720.0, 6.0).set_trans(Tween.TRANS_LINEAR)
+	await float_tween.finished
+	
+	var end_tween = create_tween()
+	end_tween.tween_property(dim, "color:a", 0.0, 0.25)
+	end_tween.parallel().tween_property(dvd_disc, "scale", Vector3.ZERO, 0.25)
+	await end_tween.finished
+	
 	overlay.queue_free()

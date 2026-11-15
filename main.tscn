@@ -90,27 +90,27 @@ polygon = PackedVector2Array(1098, -42, 1107, 44, 1176, 48, 1171, 616, 1112, 611
 [node name="DVD" type="CharacterBody2D" parent="." unique_id=978095398 node_paths=PackedStringArray("rare_crate_button")]
 script = ExtResource("2_h2yge")
 texture_levels = Dictionary[Texture2D, int]({
-ExtResource("13_074og"): 5,
-ExtResource("9_w48qg"): 4,
-ExtResource("10_vivmo"): 3,
-ExtResource("11_2cqfq"): 6,
-ExtResource("7_facbu"): 34,
-ExtResource("8_b1qrp"): 23,
-ExtResource("9_come4"): 33,
-ExtResource("10_h8e4i"): 30,
-ExtResource("11_4lmeg"): 25,
-ExtResource("17_1u8w0"): 51,
-ExtResource("14_getpj"): 41,
-ExtResource("14_0cp0l"): 31,
-ExtResource("15_d2t1y"): 32,
-ExtResource("16_d13ii"): 42,
-ExtResource("17_gngh3"): 22,
-ExtResource("18_0n3wm"): 24,
-ExtResource("19_qnost"): 20,
-ExtResource("20_wnkbs"): 50,
-ExtResource("15_ryguw"): 43,
+ExtResource("23_0cbny"): 21,
 ExtResource("22_f6a44"): 60,
-ExtResource("23_0cbny"): 21
+ExtResource("15_ryguw"): 43,
+ExtResource("20_wnkbs"): 50,
+ExtResource("19_qnost"): 20,
+ExtResource("18_0n3wm"): 24,
+ExtResource("17_gngh3"): 22,
+ExtResource("16_d13ii"): 42,
+ExtResource("15_d2t1y"): 32,
+ExtResource("14_0cp0l"): 31,
+ExtResource("14_getpj"): 41,
+ExtResource("17_1u8w0"): 51,
+ExtResource("11_4lmeg"): 25,
+ExtResource("10_h8e4i"): 30,
+ExtResource("9_come4"): 33,
+ExtResource("8_b1qrp"): 23,
+ExtResource("7_facbu"): 34,
+ExtResource("11_2cqfq"): 6,
+ExtResource("10_vivmo"): 3,
+ExtResource("9_w48qg"): 4,
+ExtResource("13_074og"): 5
 })
 math_dvd_texture = ExtResource("18_0n3wm")
 rare_crate_button = NodePath("../ShopUi/GridContainer/TextureButton3")

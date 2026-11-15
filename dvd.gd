@@ -278,16 +278,16 @@ func activate_potion(potion_type: int) -> void:
 			update_money_ui()
 			show_floating_banner("POTION: DOUBLED YOUR MONEY! ($" + str(money) + ")", Color.GOLD)
 		2:
-			income_multiplier = 2
+			income_multiplier = 2*income_multiplier
 			update_money_ui()
-			show_floating_banner("POTION: 2x INCOME FOR 30 SECONDS!", Color.LIME_GREEN)
+			show_floating_banner("POTION: " + str(income_multiplier) + "x INCOME FOR 30 SECONDS!", Color.LIME_GREEN)
 			await get_tree().create_timer(30.0).timeout
 			income_multiplier = 1
 			update_money_ui()
 		3:
-			speed_multiplier = 5.0
+			speed_multiplier = 5.0*speed_multiplier
 			update_money_ui()
-			show_floating_banner("POTION: 5x SPEED FOR 30 SECONDS!", Color.CYAN)
+			show_floating_banner("POTION: " + str(speed_multiplier) + "x SPEED FOR 30 SECONDS!", Color.CYAN)
 			await get_tree().create_timer(30.0).timeout
 			speed_multiplier = 1.0
 			update_money_ui()
