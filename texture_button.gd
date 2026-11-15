@@ -3,6 +3,7 @@ extends TextureButton
 @export var dvd_player: CharacterBody2D
 @export var dvd_textures: Array[Texture2D] = []
 @export var cost: int = 100
+@export var podium_texture: Texture2D
 
 var is_opening: bool = false
 
@@ -85,25 +86,21 @@ func play_crate_animation(reward_texture: Texture2D) -> void:
 	rim_light.light_color = Color(0.4, 0.8, 1.0)
 	rim_light.light_energy = 3.5
 	vp.add_child(rim_light)
-	
-	# 4. Build the 3D Podium at the bottom
+		# 4. Build the Podium from your PNG
 	var podium = MeshInstance3D.new()
-	var pod_mesh = CylinderMesh.new()
-	pod_mesh.top_radius = 1.45
-	pod_mesh.bottom_radius = 1.75
-	pod_mesh.height = 0.45
-	podium.mesh = pod_mesh
-	
+	var pod_quad = QuadMesh.new()
+	pod_quad.size = Vector2(4.8, 2.1) # Adjust width/height to match your podium PNG shape
+	podium.mesh = pod_quad
+
 	var pod_mat = StandardMaterial3D.new()
-	pod_mat.albedo_color = Color(0.16, 0.2, 0.32)
-	pod_mat.metallic = 0.75
-	pod_mat.roughness = 0.2
-	pod_mat.emission_enabled = true
-	pod_mat.emission = Color(0.2, 0.55, 1.0)
-	pod_mat.emission_energy_multiplier = 0.65
+	pod_mat.albedo_texture = podium_texture
+	pod_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	pod_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	pod_mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 	podium.material_override = pod_mat
-	podium.position = Vector3(0, -1.55, 0)
+	podium.position = Vector3(0, -1.45, 1) # Slightly behind the DVD on Z-axis
 	vp.add_child(podium)
+
 		# 5. Build the 3D Crate using a crisp double-sided QuadMesh
 	var crate = MeshInstance3D.new()
 	var crate_quad = QuadMesh.new()

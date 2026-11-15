@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://hcx4fir8ocfo" path="res://Yellow-DVD.png" id="23_0cbny"]
 [ext_resource type="Texture2D" uid="uid://d1bykvhyukni4" path="res://Potion.png" id="24_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://dptep36fq3d27" path="res://pixilart-drawing (6).png" id="29_0rl1p"]
+[ext_resource type="Texture2D" uid="uid://j24vcokpc3v7" path="res://Podium.png" id="31_ok6jj"]
 [ext_resource type="Texture2D" uid="uid://4rnsrs3aj0m4" path="res://pixilart-drawing (7).png" id="32_ok6jj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luqic"]
@@ -181,6 +182,7 @@ stretch_mode = 0
 script = ExtResource("8_kek77")
 dvd_player = NodePath("../../../DVD")
 dvd_textures = Array[Texture2D]([ExtResource("9_w48qg"), ExtResource("10_vivmo"), ExtResource("11_2cqfq"), ExtResource("12_yaehf"), ExtResource("13_074og")])
+podium_texture = ExtResource("31_ok6jj")
 
 [node name="Label" type="Label" parent="ShopUi/GridContainer/TextureButton" unique_id=1019624069]
 modulate = Color(1.4929944, 1.4929944, 1.5115304, 1)
@@ -252,19 +254,19 @@ stretch_mode = 0
 script = ExtResource("8_kek77")
 dvd_player = NodePath("../../../DVD")
 dvd_textures = Array[Texture2D]([ExtResource("14_getpj"), ExtResource("15_ryguw"), ExtResource("16_d13ii"), ExtResource("17_1u8w0"), ExtResource("22_f6a44"), ExtResource("20_wnkbs")])
-cost = 10000000
+cost = 100000000
 
 [node name="Label" type="Label" parent="ShopUi/GridContainer/TextureButton4" unique_id=1296747864]
 modulate = Color(1.7231046, 0, 17.031149, 1)
 layout_mode = 0
-offset_left = 111.26631
-offset_top = 561.6762
-offset_right = 411.2663
-offset_bottom = 661.6763
+offset_left = 62.780937
+offset_top = 558.229
+offset_right = 362.78094
+offset_bottom = 658.22906
 scale = Vector2(1.7412813, 2.2103927)
 theme_override_fonts/font = ExtResource("8_5vw27")
 theme_override_font_sizes/font_size = 70
-text = "10M"
+text = "100M"
 
 [node name="Money" type="CanvasLayer" parent="." unique_id=2046911208]
 
