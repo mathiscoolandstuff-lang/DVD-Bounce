@@ -87,6 +87,7 @@ icon = ExtResource("4_1bvp3")
 flat = true
 
 [node name="ShopUi" type="CanvasLayer" parent="." unique_id=1648907895]
+visible = false
 
 [node name="Shop" type="Sprite2D" parent="ShopUi" unique_id=181213480]
 z_index = 1
@@ -114,7 +115,6 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Money" type="CanvasLayer" parent="." unique_id=2046911208]
-visible = false
 
 [node name="Money" type="Label" parent="Money" unique_id=575790118]
 offset_left = 686.0
