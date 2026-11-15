@@ -3,6 +3,7 @@ extends TextureButton
 @export var dvd_player: CharacterBody2D
 @export var dvd_textures: Array[Texture2D] = []
 @export var cost: int = 100
+@export var unlock_display_size: float = 400
 
 var is_opening: bool = false
 
@@ -61,8 +62,8 @@ func play_crate_animation(reward_texture: Texture2D) -> void:
 	display_icon.texture = texture_normal # Starts showing the crate image
 	display_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	display_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	display_icon.custom_minimum_size = Vector2(180, 180)
-	display_icon.pivot_offset = Vector2(90, 90)
+	display_icon.custom_minimum_size = Vector2(unlock_display_size, unlock_display_size)
+	display_icon.pivot_offset = Vector2(unlock_display_size * 0.5, unlock_display_size * 0.5)
 	display_icon.scale = Vector2(0.2, 0.2)
 	center.add_child(display_icon)
 	
