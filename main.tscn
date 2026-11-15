@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://dapcbd6rwn3hn" path="res://Purple-DVD.png" id="20_wnkbs"]
 [ext_resource type="Texture2D" uid="uid://bfncbtu3lhcma" path="res://Ultrablue-DVD.png" id="22_f6a44"]
 [ext_resource type="Texture2D" uid="uid://hcx4fir8ocfo" path="res://Yellow-DVD.png" id="23_0cbny"]
+[ext_resource type="Texture2D" uid="uid://d1bykvhyukni4" path="res://Potion.png" id="24_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://chqttfeard6dj" path="res://Common-Crate.png" id="28_hrvbo"]
 [ext_resource type="Texture2D" uid="uid://vhpxpbnmjish" path="res://Uncommon-Crate.png" id="31_uypp3"]
 [ext_resource type="Texture2D" uid="uid://do67ga6gy8thu" path="res://Rare-Crate.png" id="32_blkrb"]
@@ -83,31 +84,38 @@ texture = ExtResource("1_ig7tw")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Corners" unique_id=1896283018]
 polygon = PackedVector2Array(1098, -42, 1107, 44, 1176, 48, 1171, 616, 1112, 611, 1121, 681, 37, 673, 61, 589, -22, 601, -16, 21, 52, 37, 50, -36, 986, -53, 969, -135, -302, -272, -286, 873, 1430, 853, 1379, -218)
 
-[node name="DVD" type="CharacterBody2D" parent="." unique_id=978095398]
+[node name="DVD" type="CharacterBody2D" parent="." unique_id=978095398 node_paths=PackedStringArray("rare_crate_button")]
 script = ExtResource("2_h2yge")
 texture_levels = Dictionary[Texture2D, int]({
-ExtResource("23_0cbny"): 0,
-ExtResource("22_f6a44"): 0,
-ExtResource("15_ryguw"): 0,
-ExtResource("20_wnkbs"): 0,
-ExtResource("19_qnost"): 0,
-ExtResource("18_0n3wm"): 0,
-ExtResource("17_gngh3"): 0,
-ExtResource("16_d13ii"): 0,
-ExtResource("15_d2t1y"): 0,
-ExtResource("14_0cp0l"): 0,
-ExtResource("14_getpj"): 0,
-ExtResource("17_1u8w0"): 0,
-ExtResource("11_4lmeg"): 0,
-ExtResource("10_h8e4i"): 0,
-ExtResource("9_come4"): 0,
-ExtResource("8_b1qrp"): 40,
-ExtResource("7_facbu"): 20,
+ExtResource("23_0cbny"): 21,
+ExtResource("22_f6a44"): 60,
+ExtResource("15_ryguw"): 43,
+ExtResource("20_wnkbs"): 50,
+ExtResource("19_qnost"): 20,
+ExtResource("18_0n3wm"): 24,
+ExtResource("17_gngh3"): 22,
+ExtResource("16_d13ii"): 42,
+ExtResource("15_d2t1y"): 32,
+ExtResource("14_0cp0l"): 31,
+ExtResource("14_getpj"): 41,
+ExtResource("17_1u8w0"): 51,
+ExtResource("11_4lmeg"): 25,
+ExtResource("10_h8e4i"): 30,
+ExtResource("9_come4"): 33,
+ExtResource("8_b1qrp"): 23,
+ExtResource("7_facbu"): 34,
 ExtResource("11_2cqfq"): 6,
 ExtResource("10_vivmo"): 3,
 ExtResource("9_w48qg"): 4,
 ExtResource("13_074og"): 5
 })
+math_dvd_texture = ExtResource("18_0n3wm")
+rare_crate_button = NodePath("../ShopUi/GridContainer/TextureButton3")
+math_quiz_interval = 60.0
+chemistry_dvd_texture = ExtResource("7_facbu")
+potion_texture = ExtResource("24_b1qrp")
+dvd_texture = ExtResource("7_facbu")
+dvd_level = 34
 
 [node name="Sprite2D" type="Sprite2D" parent="DVD" unique_id=218356919]
 position = Vector2(600, 300)
@@ -204,10 +212,10 @@ cost = 10000000
 [node name="Money" type="CanvasLayer" parent="." unique_id=2046911208]
 
 [node name="Money" type="Label" parent="Money" unique_id=575790118]
-offset_left = 686.0
-offset_top = 8.0
-offset_right = 992.0
-offset_bottom = 55.0
+offset_left = 16.0
+offset_top = 13.0
+offset_right = 322.0
+offset_bottom = 60.0
 theme_override_fonts/font = ExtResource("8_5vw27")
 theme_override_font_sizes/font_size = 34
 text = "Money: $0"
@@ -215,7 +223,7 @@ text = "Money: $0"
 [node name="DVD-Dex" type="CanvasLayer" parent="." unique_id=839894670]
 visible = false
 script = ExtResource("15_yaehf")
-grid_top_left = Vector2(107, 10)
+grid_top_left = Vector2(187, 10)
 
 [node name="DVD-Dex" type="Sprite2D" parent="DVD-Dex" unique_id=999670540]
 position = Vector2(573, 324.00003)

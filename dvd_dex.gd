@@ -54,6 +54,10 @@ func _on_dvd_unlocked(tex: Texture2D) -> void:
 	
 	btn.pressed.connect(func(): _on_dex_item_clicked(tex))
 	grid.add_child(btn)
+	btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	btn.mouse_entered.connect(func(): btn.modulate = Color(3.5, 3.5, 3.5))
+	btn.mouse_exited.connect(func(): btn.modulate = Color(1, 1, 1))
+
 
 func _on_dex_item_clicked(tex: Texture2D) -> void:
 	if dvd_player:
