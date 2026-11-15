@@ -234,6 +234,7 @@ text = "Money: $0"
 visible = false
 script = ExtResource("15_yaehf")
 grid_top_left = Vector2(187, 10)
+vertical_gap = -15
 
 [node name="DVD-Dex" type="Sprite2D" parent="DVD-Dex" unique_id=999670540]
 position = Vector2(573, 324.00003)
