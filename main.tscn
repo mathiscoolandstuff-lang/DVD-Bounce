@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://rku6r8rq7qn5" path="res://pixilart-drawing (4).png" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bglk0cfw8lbwv" path="res://shop_button.gd" id="4_7mycd"]
 [ext_resource type="Texture2D" uid="uid://c316wl62gs4oj" path="res://pixilart-drawing (5).png" id="5_lquwl"]
-[ext_resource type="FontFile" uid="uid://bbibi0pfdfhni" path="res://PressStart2P-Regular.ttf" id="7_272bh"]
+[ext_resource type="Texture2D" uid="uid://dptep36fq3d27" path="res://pixilart-drawing (6).png" id="7_272bh"]
+[ext_resource type="FontFile" uid="uid://bbibi0pfdfhni" path="res://PressStart2P-Regular.ttf" id="8_5vw27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luqic"]
 size = Vector2(1172, 20)
@@ -48,6 +49,11 @@ position = Vector2(576, 324.00003)
 scale = Vector2(2.577181, 1.4496645)
 texture = ExtResource("1_ig7tw")
 
+[node name="Corners" type="Area2D" parent="Walls" unique_id=655642933]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Corners" unique_id=1896283018]
+polygon = PackedVector2Array(1098, -42, 1107, 44, 1176, 48, 1171, 616, 1112, 611, 1121, 681, 37, 673, 61, 589, -22, 601, -16, 21, 52, 37, 50, -36, 986, -53, 969, -135, -302, -272, -286, 873, 1430, 853, 1379, -218)
+
 [node name="DVD" type="CharacterBody2D" parent="." unique_id=978095398]
 script = ExtResource("2_h2yge")
 
@@ -63,20 +69,24 @@ scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="Shop Button" type="CanvasLayer" parent="." unique_id=983321875]
+layer = 2
 scale = Vector2(8.365, 8.365)
 transform = Transform2D(8.365, 0, 0, 8.365, 0, 0)
 script = ExtResource("4_7mycd")
 
 [node name="Button" type="Button" parent="Shop Button" unique_id=432504035]
+z_index = 2
+anchors_preset = -1
+anchor_right = 0.142
+anchor_bottom = 0.133
 offset_left = 97.42977
 offset_top = 55.708313
-offset_right = 137.42978
-offset_bottom = 79.70832
+offset_right = -26.15422
+offset_bottom = -6.4756775
 icon = ExtResource("4_1bvp3")
 flat = true
 
-[node name="ShopUi" type="Area2D" parent="." unique_id=41603899]
-visible = false
+[node name="ShopUi" type="CanvasLayer" parent="." unique_id=1648907895]
 
 [node name="Shop" type="Sprite2D" parent="ShopUi" unique_id=181213480]
 z_index = 1
@@ -84,16 +94,38 @@ position = Vector2(581, 511)
 scale = Vector2(6.5, 6.5)
 texture = ExtResource("5_lquwl")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2046911208]
+[node name="GridContainer" type="GridContainer" parent="ShopUi" unique_id=630219286]
+custom_minimum_size = Vector2(10, 10)
+anchors_preset = -1
+anchor_right = 0.933
+anchor_bottom = 0.734
+offset_left = 20.0
+offset_top = 108.0
+offset_right = -40.12097
+offset_bottom = 123.36798
+columns = 3
 
-[node name="Money" type="Label" parent="CanvasLayer" unique_id=575790118]
+[node name="TextureButton" type="TextureButton" parent="ShopUi/GridContainer" unique_id=655879727]
+z_index = 2
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+texture_normal = ExtResource("7_272bh")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Money" type="CanvasLayer" parent="." unique_id=2046911208]
+visible = false
+
+[node name="Money" type="Label" parent="Money" unique_id=575790118]
 offset_left = 686.0
 offset_top = 8.0
 offset_right = 992.0
 offset_bottom = 55.0
-theme_override_fonts/font = ExtResource("7_272bh")
+theme_override_fonts/font = ExtResource("8_5vw27")
 theme_override_font_sizes/font_size = 34
 text = "Money: $0"
 
+[connection signal="area_entered" from="Walls/Corners" to="DVD" method="_on_corners_area_entered"]
+[connection signal="body_entered" from="Walls/Corners" to="DVD" method="_on_corners_body_entered"]
 [connection signal="pressed" from="Shop Button/Button" to="DVD" method="_on_button_pressed"]
 [connection signal="toggled" from="Shop Button/Button" to="DVD" method="_on_button_toggled"]

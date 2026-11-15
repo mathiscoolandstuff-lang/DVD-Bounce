@@ -5,10 +5,13 @@ extends CharacterBody2D
 var money: int = 0
 var dvd_level: int = 1
 var money_label: Label
+var money_ui: CanvasLayer
 
 func _ready() -> void:
-	# Automatically finds the node named "Money" anywhere in your current scene
-	money_label = get_tree().current_scene.find_child("Money", true, false)
+	# Automatically finds the CanvasLayer named "Money" anywhere in your current scene
+	money_ui = get_tree().current_scene.find_child("Money", true, false) as CanvasLayer
+	if money_ui:
+		money_label = money_ui.find_child("*", true, false) as Label
 	
 	var four_directions = [45.0, 135.0, 225.0, 315.0]
 	var chosen_degrees = four_directions.pick_random()
@@ -31,4 +34,9 @@ func update_money_ui() -> void:
 func _on_button_pressed() -> void:
 	print("hello")
 	$"../ShopUi".visible = !$"../ShopUi".visible
-	$"../CanvasLayer/Money".visible = !$"../CanvasLayer/Money".visible
+	if money_ui:
+		money_ui.visible = !money_ui.visible
+
+
+func _on_corners_body_entered(body: Node2D) -> void:
+	money += dvd_level * 300
