@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c316wl62gs4oj" path="res://pixilart-drawing (5).png" id="5_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dptep36fq3d27" path="res://pixilart-drawing (6).png" id="7_272bh"]
 [ext_resource type="FontFile" uid="uid://bbibi0pfdfhni" path="res://PressStart2P-Regular.ttf" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://covvkdjf7fras" path="res://texture_button.gd" id="8_kek77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luqic"]
 size = Vector2(1172, 20)
@@ -106,13 +107,15 @@ offset_right = -40.12097
 offset_bottom = 123.36798
 columns = 3
 
-[node name="TextureButton" type="TextureButton" parent="ShopUi/GridContainer" unique_id=655879727]
+[node name="TextureButton" type="TextureButton" parent="ShopUi/GridContainer" unique_id=655879727 node_paths=PackedStringArray("dvd_player")]
 z_index = 2
 custom_minimum_size = Vector2(175, 175)
 layout_mode = 2
 texture_normal = ExtResource("7_272bh")
-ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("8_kek77")
+dvd_player = NodePath("../../../DVD")
+dvd_textures = Array[Texture2D]([null, null, null, null, null])
 
 [node name="Money" type="CanvasLayer" parent="." unique_id=2046911208]
 

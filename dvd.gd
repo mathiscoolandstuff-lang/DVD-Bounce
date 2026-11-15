@@ -1,14 +1,23 @@
 extends CharacterBody2D
 
 @export var speed: float = 300.0
+@export var dvd_texture: Texture2D:
+	set(value):
+		dvd_texture = value
+		if is_node_ready() and sprite and dvd_texture:
+			sprite.texture = dvd_texture
+
+@onready var sprite: Sprite2D = $Sprite2D
 
 var money: int = 0
-var dvd_level: int = 1
+@export var dvd_level: int = 1
 var money_label: Label
 var money_ui: CanvasLayer
 
 func _ready() -> void:
-	# Automatically finds the CanvasLayer named "Money" anywhere in your current scene
+	if dvd_texture and sprite:
+		sprite.texture = dvd_texture
+	
 	money_ui = get_tree().current_scene.find_child("Money", true, false) as CanvasLayer
 	if money_ui:
 		money_label = money_ui.find_child("*", true, false) as Label
@@ -34,9 +43,6 @@ func update_money_ui() -> void:
 func _on_button_pressed() -> void:
 	print("hello")
 	$"../ShopUi".visible = !$"../ShopUi".visible
-	if money_ui:
-		money_ui.visible = !money_ui.visible
-
 
 func _on_corners_body_entered(body: Node2D) -> void:
 	money += dvd_level * 300
