@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://xemporfovp48" path="res://pixilart-drawing (1).png" id="11_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://bs4vw6e8l6qva" path="res://pixilart-drawing (2).png" id="12_yaehf"]
 [ext_resource type="Texture2D" uid="uid://b5i3cmd1lcdfl" path="res://Banana-DVD.png" id="13_074og"]
+[ext_resource type="Texture2D" uid="uid://tc5ugit72h7h" path="res://DVD-Dex.png" id="15_vivmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luqic"]
 size = Vector2(1172, 20)
@@ -62,6 +63,12 @@ polygon = PackedVector2Array(1098, -42, 1107, 44, 1176, 48, 1171, 616, 1112, 611
 
 [node name="DVD" type="CharacterBody2D" parent="." unique_id=978095398]
 script = ExtResource("2_h2yge")
+texture_levels = Dictionary[Texture2D, int]({
+ExtResource("13_074og"): 5,
+ExtResource("9_w48qg"): 4,
+ExtResource("10_vivmo"): 3,
+ExtResource("11_2cqfq"): 6
+})
 
 [node name="Sprite2D" type="Sprite2D" parent="DVD" unique_id=218356919]
 position = Vector2(600, 300)
@@ -132,6 +139,23 @@ offset_bottom = 55.0
 theme_override_fonts/font = ExtResource("8_5vw27")
 theme_override_font_sizes/font_size = 34
 text = "Money: $0"
+
+[node name="DVD-Dex" type="CanvasLayer" parent="." unique_id=839894670]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="DVD-Dex" unique_id=999670540]
+position = Vector2(581, 327)
+scale = Vector2(11.56, 6.58)
+texture = ExtResource("15_vivmo")
+
+[node name="DVDDexButton" type="CanvasLayer" parent="." unique_id=661480324]
+
+[node name="Button" type="Button" parent="DVDDexButton" unique_id=794062497]
+offset_left = 29.0
+offset_top = 525.0
+offset_right = 137.0
+offset_bottom = 633.0
+icon = ExtResource("15_vivmo")
 
 [connection signal="area_entered" from="Walls/Corners" to="DVD" method="_on_corners_area_entered"]
 [connection signal="body_entered" from="Walls/Corners" to="DVD" method="_on_corners_body_entered"]
