@@ -1,20 +1,42 @@
 [gd_scene format=3 uid="uid://byc50nu3mmxp1"]
 
 [ext_resource type="Texture2D" uid="uid://dv6ybaf0cpsqd" path="res://images.jpg" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://b78wng2jern54" path="res://pixil-frame-0.png" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://b78wng2jern54" path="res://Normal-DVD.png" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bhrdwytf8tg86" path="res://dvd.gd" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://rku6r8rq7qn5" path="res://pixilart-drawing (4).png" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bglk0cfw8lbwv" path="res://shop_button.gd" id="4_7mycd"]
 [ext_resource type="Texture2D" uid="uid://c316wl62gs4oj" path="res://pixilart-drawing (5).png" id="5_lquwl"]
-[ext_resource type="Texture2D" uid="uid://dptep36fq3d27" path="res://pixilart-drawing (6).png" id="7_272bh"]
+[ext_resource type="Texture2D" uid="uid://75ac5p4ptvm" path="res://Chemistry-DVD.png" id="7_facbu"]
 [ext_resource type="FontFile" uid="uid://bbibi0pfdfhni" path="res://PressStart2P-Regular.ttf" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://csrfxu7p078ub" path="res://Colorless-DVD.png" id="8_b1qrp"]
 [ext_resource type="Script" uid="uid://covvkdjf7fras" path="res://texture_button.gd" id="8_kek77"]
-[ext_resource type="Texture2D" uid="uid://bjm4qal3jttk1" path="res://pixilart-drawing.png" id="9_w48qg"]
+[ext_resource type="Texture2D" uid="uid://ba2btngrglqwa" path="res://Darkness-DVD.png" id="9_come4"]
+[ext_resource type="Texture2D" uid="uid://bjm4qal3jttk1" path="res://Broken-DVD.png" id="9_w48qg"]
+[ext_resource type="Texture2D" uid="uid://6dnpjobwsffj" path="res://Demon-DVD.png" id="10_h8e4i"]
 [ext_resource type="Texture2D" uid="uid://bmm0lmad74kap" path="res://Red-DVD.png" id="10_vivmo"]
-[ext_resource type="Texture2D" uid="uid://xemporfovp48" path="res://pixilart-drawing (1).png" id="11_2cqfq"]
-[ext_resource type="Texture2D" uid="uid://bs4vw6e8l6qva" path="res://pixilart-drawing (2).png" id="12_yaehf"]
+[ext_resource type="Texture2D" uid="uid://xemporfovp48" path="res://Cat-DVD.png" id="11_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://dtlwri6jo0rbh" path="res://Dog_DVD.png" id="11_4lmeg"]
+[ext_resource type="Texture2D" uid="uid://bs4vw6e8l6qva" path="res://Square-DVD.png" id="12_yaehf"]
 [ext_resource type="Texture2D" uid="uid://b5i3cmd1lcdfl" path="res://Banana-DVD.png" id="13_074og"]
+[ext_resource type="Texture2D" uid="uid://c14r0velas12q" path="res://Glass-DVD.png" id="14_0cp0l"]
+[ext_resource type="Texture2D" uid="uid://bqnfxlctw0tep" path="res://Flame-DVD.png" id="14_getpj"]
+[ext_resource type="Texture2D" uid="uid://bpj27fju4l2aq" path="res://Green-DVD.png" id="15_d2t1y"]
+[ext_resource type="Texture2D" uid="uid://c62i6c3pq6gqw" path="res://Rainbi=ow.png" id="15_ryguw"]
 [ext_resource type="Texture2D" uid="uid://tc5ugit72h7h" path="res://DVD-Dex.png" id="15_vivmo"]
+[ext_resource type="Script" uid="uid://b5ptdy4dnyajj" path="res://dvd_dex.gd" id="15_yaehf"]
+[ext_resource type="Script" uid="uid://jum44dgycfw5" path="res://button.gd" id="16_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://ciwa3jsok8wid" path="res://Inverted-DVD.png" id="16_d13ii"]
+[ext_resource type="Texture2D" uid="uid://dfyw0u2qip5ra" path="res://Energy-DVD.png" id="17_1u8w0"]
+[ext_resource type="Texture2D" uid="uid://dwj7bl1vkhmdr" path="res://MagentaLightBlue-DVD.png" id="17_gngh3"]
+[ext_resource type="Texture2D" uid="uid://c6av6avhq8dcf" path="res://Math-DVD.png" id="18_0n3wm"]
+[ext_resource type="Texture2D" uid="uid://b1omccyeg6xee" path="res://Orange-DVD.png" id="19_qnost"]
+[ext_resource type="Texture2D" uid="uid://dapcbd6rwn3hn" path="res://Purple-DVD.png" id="20_wnkbs"]
+[ext_resource type="Texture2D" uid="uid://bfncbtu3lhcma" path="res://Ultrablue-DVD.png" id="22_f6a44"]
+[ext_resource type="Texture2D" uid="uid://hcx4fir8ocfo" path="res://Yellow-DVD.png" id="23_0cbny"]
+[ext_resource type="Texture2D" uid="uid://chqttfeard6dj" path="res://Common-Crate.png" id="28_hrvbo"]
+[ext_resource type="Texture2D" uid="uid://vhpxpbnmjish" path="res://Uncommon-Crate.png" id="31_uypp3"]
+[ext_resource type="Texture2D" uid="uid://do67ga6gy8thu" path="res://Rare-Crate.png" id="32_blkrb"]
+[ext_resource type="Texture2D" uid="uid://m6odxn7ms2pu" path="res://Legendary-Crate.png" id="33_abqjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luqic"]
 size = Vector2(1172, 20)
@@ -64,10 +86,27 @@ polygon = PackedVector2Array(1098, -42, 1107, 44, 1176, 48, 1171, 616, 1112, 611
 [node name="DVD" type="CharacterBody2D" parent="." unique_id=978095398]
 script = ExtResource("2_h2yge")
 texture_levels = Dictionary[Texture2D, int]({
-ExtResource("13_074og"): 5,
-ExtResource("9_w48qg"): 4,
+ExtResource("23_0cbny"): 0,
+ExtResource("22_f6a44"): 0,
+ExtResource("15_ryguw"): 0,
+ExtResource("20_wnkbs"): 0,
+ExtResource("19_qnost"): 0,
+ExtResource("18_0n3wm"): 0,
+ExtResource("17_gngh3"): 0,
+ExtResource("16_d13ii"): 0,
+ExtResource("15_d2t1y"): 0,
+ExtResource("14_0cp0l"): 0,
+ExtResource("14_getpj"): 0,
+ExtResource("17_1u8w0"): 0,
+ExtResource("11_4lmeg"): 0,
+ExtResource("10_h8e4i"): 0,
+ExtResource("9_come4"): 0,
+ExtResource("8_b1qrp"): 40,
+ExtResource("7_facbu"): 20,
+ExtResource("11_2cqfq"): 6,
 ExtResource("10_vivmo"): 3,
-ExtResource("11_2cqfq"): 6
+ExtResource("9_w48qg"): 4,
+ExtResource("13_074og"): 5
 })
 
 [node name="Sprite2D" type="Sprite2D" parent="DVD" unique_id=218356919]
@@ -117,17 +156,50 @@ offset_left = 20.0
 offset_top = 108.0
 offset_right = -40.12097
 offset_bottom = 123.36798
-columns = 3
+columns = 2
 
 [node name="TextureButton" type="TextureButton" parent="ShopUi/GridContainer" unique_id=655879727 node_paths=PackedStringArray("dvd_player")]
 z_index = 2
 custom_minimum_size = Vector2(175, 175)
 layout_mode = 2
-texture_normal = ExtResource("7_272bh")
+texture_normal = ExtResource("28_hrvbo")
 stretch_mode = 0
 script = ExtResource("8_kek77")
 dvd_player = NodePath("../../../DVD")
 dvd_textures = Array[Texture2D]([ExtResource("9_w48qg"), ExtResource("10_vivmo"), ExtResource("11_2cqfq"), ExtResource("12_yaehf"), ExtResource("13_074og")])
+
+[node name="TextureButton2" type="TextureButton" parent="ShopUi/GridContainer" unique_id=1621680793 node_paths=PackedStringArray("dvd_player")]
+z_index = 2
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+texture_normal = ExtResource("31_uypp3")
+stretch_mode = 0
+script = ExtResource("8_kek77")
+dvd_player = NodePath("../../../DVD")
+dvd_textures = Array[Texture2D]([ExtResource("19_qnost"), ExtResource("23_0cbny"), ExtResource("11_4lmeg"), ExtResource("17_gngh3"), ExtResource("8_b1qrp"), ExtResource("18_0n3wm")])
+cost = 10000
+
+[node name="TextureButton3" type="TextureButton" parent="ShopUi/GridContainer" unique_id=1205736918 node_paths=PackedStringArray("dvd_player")]
+z_index = 2
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+texture_normal = ExtResource("32_blkrb")
+stretch_mode = 0
+script = ExtResource("8_kek77")
+dvd_player = NodePath("../../../DVD")
+dvd_textures = Array[Texture2D]([ExtResource("14_0cp0l"), ExtResource("10_h8e4i"), ExtResource("15_d2t1y"), ExtResource("9_come4"), ExtResource("7_facbu")])
+cost = 1000000
+
+[node name="TextureButton4" type="TextureButton" parent="ShopUi/GridContainer" unique_id=1006820492 node_paths=PackedStringArray("dvd_player")]
+z_index = 2
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+texture_normal = ExtResource("33_abqjc")
+stretch_mode = 0
+script = ExtResource("8_kek77")
+dvd_player = NodePath("../../../DVD")
+dvd_textures = Array[Texture2D]([ExtResource("14_getpj"), ExtResource("15_ryguw"), ExtResource("16_d13ii"), ExtResource("17_1u8w0"), ExtResource("22_f6a44"), ExtResource("20_wnkbs")])
+cost = 10000000
 
 [node name="Money" type="CanvasLayer" parent="." unique_id=2046911208]
 
@@ -142,10 +214,12 @@ text = "Money: $0"
 
 [node name="DVD-Dex" type="CanvasLayer" parent="." unique_id=839894670]
 visible = false
+script = ExtResource("15_yaehf")
+grid_top_left = Vector2(107, 10)
 
-[node name="Sprite2D" type="Sprite2D" parent="DVD-Dex" unique_id=999670540]
-position = Vector2(581, 327)
-scale = Vector2(11.56, 6.58)
+[node name="DVD-Dex" type="Sprite2D" parent="DVD-Dex" unique_id=999670540]
+position = Vector2(573, 324.00003)
+scale = Vector2(8.63, 6.58)
 texture = ExtResource("15_vivmo")
 
 [node name="DVDDexButton" type="CanvasLayer" parent="." unique_id=661480324]
@@ -156,6 +230,7 @@ offset_top = 525.0
 offset_right = 137.0
 offset_bottom = 633.0
 icon = ExtResource("15_vivmo")
+script = ExtResource("16_2cqfq")
 
 [connection signal="area_entered" from="Walls/Corners" to="DVD" method="_on_corners_area_entered"]
 [connection signal="body_entered" from="Walls/Corners" to="DVD" method="_on_corners_body_entered"]

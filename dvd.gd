@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal dvd_unlocked(texture: Texture2D)
+
 @export var speed: float = 300.0
 @export var texture_levels: Dictionary[Texture2D, int] = {}
 
@@ -9,6 +11,7 @@ extends CharacterBody2D
 		if is_node_ready() and sprite and dvd_texture:
 			sprite.texture = dvd_texture
 		update_dvd_level()
+		unlock_dvd(dvd_texture)
 
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -16,10 +19,12 @@ var money: int = 0
 @export var dvd_level: int = 1
 var money_label: Label
 var money_ui: CanvasLayer
+var unlocked_dvds: Array[Texture2D] = []
 
 func _ready() -> void:
 	if dvd_texture and sprite:
 		sprite.texture = dvd_texture
+		unlock_dvd(dvd_texture)
 	update_dvd_level()
 	
 	money_ui = get_tree().current_scene.find_child("Money", true, false) as CanvasLayer
@@ -32,6 +37,11 @@ func _ready() -> void:
 	velocity = direction * speed
 	
 	update_money_ui()
+
+func unlock_dvd(tex: Texture2D) -> void:
+	if tex and not unlocked_dvds.has(tex):
+		unlocked_dvds.append(tex)
+		dvd_unlocked.emit(tex)
 
 func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
@@ -55,7 +65,6 @@ func _on_button_pressed() -> void:
 	var shop_ui = $"../ShopUi"
 	shop_ui.visible = !shop_ui.visible
 	
-	# Hides DVDDexButton when shop is open, and shows it again when shop closes
 	var dex_button = get_tree().current_scene.find_child("DVDDexButton", true, false)
 	if dex_button:
 		dex_button.visible = !shop_ui.visible
